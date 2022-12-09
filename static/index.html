@@ -1,0 +1,214 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>pcbnorama</title>
+    <link href="bootstrap.min.css" rel="stylesheet">
+    <link href="bootstrap-icons.css" rel="stylesheet">
+    <link href="custom.css" rel="stylesheet">
+    <script defer src="jquery-3.6.1.slim.min.js"></script>
+    <script defer src="bootstrap.bundle.min.js"></script>
+    <script defer src="socket.io.slim.js"></script>
+    <script defer src="code.js"></script>
+  </head>
+
+  <body class="bg-secondary">
+
+
+    <div class="container mt-3">
+        <div class="row">
+          <div class="col">
+
+            <div class="container">
+                <!-- Printer controls -->
+                <div class="row"> <div class="col">
+                    <div class="card mb-3">
+                        <h5 class="card-header text-center">Controls</h5>
+                        <div class="card-body">
+                            <div class="container text-center">
+                                <div class="row">
+
+                                    <!-- control X/Y -->
+                                    <div class="col">
+
+                                        <div class="container">
+                                            <div class="row">
+                                                <div class="col colbtn">
+                                                </div>
+                                                <div class="col colbtn">
+                                                    <button type="button" class="btn btn-secondary btn-sm" id="xyup">
+                                                        <i class="bi-arrow-up"></i>
+                                                    </button>
+                                                </div>
+                                                <div class="col colbtn">
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col colbtn text-right">
+                                                    <button type="button" class="btn btn-secondary btn-sm" id="xyleft">
+                                                        <i class="bi-arrow-left"></i>
+                                                    </button>
+                                                </div>
+                                                <div class="col colbtn">
+                                                    <button type="button" class="btn btn-secondary btn-sm" id="xyhome">
+                                                        <i class="bi-house"></i>
+                                                    </button>
+                                                </div>
+                                                <div class="col colbtn">
+                                                    <button type="button" class="btn btn-secondary btn-sm" id="xyright">
+                                                        <i class="bi-arrow-right"></i>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col colbtn">
+                                                </div>
+                                                <div class="col colbtn">
+                                                    <button type="button" class="btn btn-secondary btn-sm" id="xydown">
+                                                        <i class="bi-arrow-down"></i>
+                                                    </button>
+                                                </div>
+                                                <div class="col colbtn">
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                    <!-- control Z -->
+                                    <div class="col">
+                                        <div class="container">
+                                            <div class="row">
+                                                <div class="col colbtn">
+                                                    <button type="button" class="btn btn-secondary btn-sm" id="zup">
+                                                        <i class="bi-arrow-up"></i>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col colbtn">
+                                                    <button type="button" class="btn btn-secondary btn-sm" id="zhome">
+                                                        <i class="bi-house"></i>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col colbtn">
+                                                    <button type="button" class="btn btn-secondary btn-sm" id="zdown">
+                                                        <i class="bi-arrow-down"></i>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- move steps -->
+                                <div class="row"> <div class="col">
+                                    <div class="btn-group btn-group-sm mt-2" role="group" aria-label="Basic example">
+                                        <button type="button" class="btn btn-secondary" id="step1">1</button>
+                                        <button type="button" class="btn btn-secondary" id="step10" disabled>10</button>
+                                        <button type="button" class="btn btn-secondary" id="step100">100</button>
+                                    </div>
+                                </div></div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                </div></div>
+
+
+
+                <!-- Scan settings -->
+                <div class="row"> <div class="col">
+                    <div class="card mb-3">
+                        <h5 class="card-header text-center">Settings</h5>
+                        <div class="card-body">
+                            <div class="input-group mb-3">
+                                <span class="input-group-text">PCB Width</span>
+                                <input type="text" class="form-control" id="pcbwidth">
+                                <span class="input-group-text">mm</span>
+                            </div>
+                            <div class="input-group mb-3">
+                                <span class="input-group-text">PCB Height</span>
+                                <input type="text" class="form-control" id="pcbheight">
+                                <span class="input-group-text">mm</span>
+                            </div>
+                            <div class="input-group mb-3">
+                                <span class="input-group-text">Step size</span>
+                                <input type="text" class="form-control" id="steps">
+                                <span class="input-group-text">mm</span>
+                            </div>
+                        </div>
+                    </div>
+                </div></div>
+
+                <!-- Run buttons -->
+                <div class="row"> <div class="col">
+                    <div class="card mb-3">
+                        <h5 class="card-header text-center">Job</h5>
+                        <div class="card-body text-center">
+                            <div class="input-group mb-3">
+                                <button type="button" class="btn btn-success w-50" id="btnstart">Start</button>
+                                <button type="button" class="btn btn-danger w-50" id="btnstop">Stop</button>
+                            </div>
+                            <div class="input-group mb-3">
+                                <button type="button" class="btn btn-primary w-100" id="download">Download result</button>
+                            </div>
+                        </div>
+                    </div>
+                </div></div>
+          </div>
+
+          </div>
+
+
+          <div class="col">
+            <div class="card">
+                <h5 class="card-header text-center">Camera View</h5>
+                <div class="card-body">
+                    <!--
+                  <img id="img" src="/stream" width="800" />
+                  -->
+                  <img id="webcam" src="/blank.jpg" width="800" />
+                </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+            <div class="col w-100 mt-3">
+                <div class="card">
+                    <h5 class="card-header text-center">Console Log</h5>
+                    <div class="card-body">
+                        <pre class="w-100 console p-3 mb-0" id="console"></pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+      </div>
+
+      <!--
+    <div class="grid text-center">
+        <div class="g-col-4">
+            blalbla
+        </div>
+
+        <div class="g-col-8">
+            <h1>Hello, world!</h1>
+            <img id="img" src="/stream" width="800" />
+        </div>
+    </div>
+    
+
+        <div class="grid text-center" style="--bs-columns: 18; --bs-gap: .5rem;">
+      <div style="grid-column: span 14;">14 columns</div>
+      <div class="g-col-4">.g-col-4</div>
+    </div>
+    -->
+
+  </body>
+</html>

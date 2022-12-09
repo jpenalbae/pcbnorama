@@ -1,0 +1,22 @@
+.maindiv {
+    width: 100%;
+    max-width: none;
+    margin: 0;
+}
+
+.header {
+    width: 100%;
+}
+
+.colbtn {
+    padding: 5px;
+}
+
+.console {
+    color: white;
+    background-color: black;
+    overflow: auto;
+    max-height: 150px;
+    display: flex;
+    flex-direction: column-reverse;
+}
