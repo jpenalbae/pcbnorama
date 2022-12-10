@@ -357,6 +357,12 @@ func main() {
 	flag.BoolVar(&debugFlag, "D", debugFlag, "Print debug messages")
 	flag.Parse()
 
+	_, err := os.Stat("./static")
+	if err != nil {
+		log.Fatal("Missing ./static/ folder with html files")
+		log.Fatal(err)
+	}
+
 	// open serial
 	serialMode := &serial.Mode{
 		BaudRate: baudRate,
